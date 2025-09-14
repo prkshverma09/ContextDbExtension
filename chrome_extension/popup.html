@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Context DB Manager</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Context DB Manager</h1>
+            <div class="server-status" id="serverStatus">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">Checking server...</span>
+            </div>
+        </header>
+
+        <main>
+            <!-- Database Management Section -->
+            <section class="section">
+                <h2>Your Context Databases</h2>
+                <div class="database-list" id="databaseList">
+                    <!-- Databases will be loaded here -->
+                </div>
+
+                <div class="create-db-form">
+                    <input type="text" id="newDbName" placeholder="Enter new database name">
+                    <button id="createDbBtn" class="btn primary">Create Database</button>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

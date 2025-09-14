@@ -1,0 +1,304 @@
+/* Content script styles - Side panel for Context DB Manager */
+
+/* Basic reset for our panel elements */
+.contextdb-side-panel * {
+    box-sizing: border-box !important;
+}
+
+/* Side panel container */
+.contextdb-side-panel {
+    all: initial !important;
+    position: fixed !important;
+    top: 0 !important;
+    right: -400px !important; /* Hidden by default */
+    width: 400px !important;
+    height: 100vh !important;
+    background: white !important;
+    border-left: 2px solid #667eea !important;
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2) !important;
+    z-index: 2147483647 !important; /* Maximum z-index value */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    color: #333 !important;
+    transition: right 0.3s ease-in-out !important;
+    overflow: hidden !important;
+}
+
+/* Panel open state */
+.contextdb-side-panel.contextdb-panel-open {
+    right: 0 !important;
+}
+
+/* Panel minimized state */
+.contextdb-side-panel.contextdb-panel-minimized {
+    right: -350px !important;
+}
+
+.contextdb-side-panel.contextdb-panel-minimized .contextdb-panel-body {
+    display: none !important;
+}
+
+/* Panel content container */
+.contextdb-panel-content {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Panel header */
+.contextdb-panel-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white !important;
+    padding: 16px 20px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.contextdb-panel-header h3 {
+    margin: 0 !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+}
+
+.contextdb-panel-controls {
+    display: flex !important;
+    gap: 8px !important;
+}
+
+.contextdb-minimize-btn,
+.contextdb-close-btn {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border: none !important;
+    color: white !important;
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
+    transition: background-color 0.2s ease !important;
+}
+
+.contextdb-minimize-btn:hover,
+.contextdb-close-btn:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Panel body */
+.contextdb-panel-body {
+    flex: 1 !important;
+    padding: 0 !important;
+    overflow-y: auto !important;
+    background: white !important;
+}
+
+/* Section styling */
+.contextdb-section-header {
+    background: #f8fafc !important;
+    padding: 12px 20px !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    color: #4b5563 !important;
+    border-bottom: 1px solid #e5e7eb !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+/* Selected text section */
+.contextdb-selected-text {
+    border-bottom: 1px solid #e5e7eb !important;
+}
+
+.contextdb-text-preview {
+    padding: 16px 20px !important;
+    font-style: italic !important;
+    color: #374151 !important;
+    background: #fefefe !important;
+    border-left: 4px solid #667eea !important;
+    margin: 12px 20px !important;
+    border-radius: 0 4px 4px 0 !important;
+    max-height: 120px !important;
+    overflow-y: auto !important;
+    word-wrap: break-word !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    user-select: text !important;
+}
+
+.contextdb-clear-text-btn {
+    margin: 0 20px 16px 20px !important;
+    padding: 6px 12px !important;
+    background: #f3f4f6 !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 4px !important;
+    color: #6b7280 !important;
+    cursor: pointer !important;
+    font-size: 12px !important;
+    transition: all 0.2s ease !important;
+}
+
+.contextdb-clear-text-btn:hover {
+    background: #e5e7eb !important;
+    color: #4b5563 !important;
+}
+
+/* Form section */
+.contextdb-form-section {
+    border-bottom: 1px solid #e5e7eb !important;
+}
+
+.contextdb-form-group {
+    padding: 12px 20px !important;
+}
+
+.contextdb-form-group label {
+    display: block !important;
+    margin-bottom: 6px !important;
+    font-weight: 500 !important;
+    color: #374151 !important;
+    font-size: 13px !important;
+}
+
+.contextdb-form-group input,
+.contextdb-form-group select {
+    width: 100% !important;
+    padding: 8px 12px !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 4px !important;
+    font-size: 13px !important;
+    background: white !important;
+    color: #374151 !important;
+    transition: border-color 0.2s ease !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    user-select: text !important;
+}
+
+.contextdb-form-group input:focus,
+.contextdb-form-group select:focus {
+    outline: none !important;
+    border-color: #667eea !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+}
+
+/* Buttons */
+.contextdb-btn {
+    padding: 10px 16px !important;
+    border: none !important;
+    border-radius: 6px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    width: 100% !important;
+    margin: 0 20px 16px 20px !important;
+    width: calc(100% - 40px) !important;
+}
+
+.contextdb-btn-primary {
+    background: #667eea !important;
+    color: white !important;
+}
+
+.contextdb-btn-primary:hover:not(:disabled) {
+    background: #5a67d8 !important;
+    transform: translateY(-1px) !important;
+}
+
+.contextdb-btn-primary:disabled {
+    background: #9ca3af !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+}
+
+.contextdb-btn-secondary {
+    background: #6b7280 !important;
+    color: white !important;
+}
+
+.contextdb-btn-secondary:hover {
+    background: #4b5563 !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Quick actions section */
+.contextdb-quick-actions {
+    padding: 0 !important;
+}
+
+/* Loading state */
+.contextdb-panel-loading {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 16px 24px !important;
+    background: white !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    font-weight: 500 !important;
+    color: #374151 !important;
+}
+
+.contextdb-spinner {
+    width: 20px !important;
+    height: 20px !important;
+    border: 2px solid #e5e7eb !important;
+    border-top: 2px solid #667eea !important;
+    border-radius: 50% !important;
+    animation: contextdb-spin 1s linear infinite !important;
+}
+
+@keyframes contextdb-spin {
+    to { transform: rotate(360deg) !important; }
+}
+
+/* Status message */
+.contextdb-panel-status {
+    display: none !important;
+    padding: 12px 20px !important;
+    margin: 0 !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    text-align: center !important;
+}
+
+.contextdb-panel-status.success {
+    background: #d1fae5 !important;
+    color: #065f46 !important;
+    border-top: 1px solid #a7f3d0 !important;
+}
+
+.contextdb-panel-status.error {
+    background: #fee2e2 !important;
+    color: #991b1b !important;
+    border-top: 1px solid #fca5a5 !important;
+}
+
+/* Prevent text selection on UI elements (except inputs and preview) */
+.contextdb-side-panel,
+.contextdb-side-panel * {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+}
+
+/* Allow text selection for specific elements */
+.contextdb-form-group input,
+.contextdb-form-group select,
+.contextdb-text-preview {
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    user-select: text !important;
+}

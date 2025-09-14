@@ -1,0 +1,21 @@
+# Core dependencies for Context DB Server
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+qdrant-client==1.7.0
+sentence-transformers==2.2.2
+
+# Data handling
+pydantic==2.5.0
+
+# HTTP client for demo script
+httpx>=0.25.0
+
+# Additional dependencies that may be installed automatically
+numpy>=1.21.0
+torch>=1.9.0
+transformers>=4.21.0
+requests>=2.25.0
+
+# Optional: For better performance and icon creation
+# huggingface-hub>=0.16.0
+# Pillow>=9.0.0  # For creating PNG icons
